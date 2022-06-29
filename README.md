@@ -5,6 +5,8 @@ Arduino Project
 
 SmartStart Interval Timer
 
+Note: This comple package is for the VSCode IDE with PlatformIO, if you want to run it in Arduino, just use the content of main.cpp
+
 BASICS:
 - Read the Smartstart Guide pdf
 - Get Hardware components
