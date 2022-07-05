@@ -98,6 +98,7 @@ void setup()
   // Serial.println(F("Setup: Starting LCD"));
   lcd.init();
   lcd.backlight();
+  // lcd.noBacklight();
 
   lcd.setCursor(0,0);
   lcd.print("  SMART START   ");  
@@ -461,8 +462,8 @@ and if the new cycle start time was updated during the rest cycle then we don't 
 the next batch of alerts before the previous onese came into play
 */
   const int longBeep  = 750;
-  const int medBeep   = 250;
-  const int shortBeep = 100;
+  const int medBeep   = 200;
+  const int shortBeep =  50;
 
   buzzer_Event_Index = 0;
 
@@ -479,9 +480,9 @@ the next batch of alerts before the previous onese came into play
     }
     else
     {
-      buzzer_Event_Millis[i] = (buzzer_Event_Millis[i - 1]+shortBeep);
+      buzzer_Event_Millis[i] = (buzzer_Event_Millis[i - 1]+medBeep);
     }
-    buzzer_Event_Millis[i + 1] = buzzer_Event_Millis[i] + shortBeep;
+    buzzer_Event_Millis[i + 1] = buzzer_Event_Millis[i] + medBeep;
     // PrintBuzzerTimes(i, "Cycle Start short");
   }
   // cycle Hi Start alert 1 Long beep
@@ -490,11 +491,11 @@ the next batch of alerts before the previous onese came into play
   // PrintBuzzerTimes(6, "Cycle Start Long");
 
   // Then the alerts before the rest cycle
-  // cycle Swap alert 10 medium beeps
+  // cycle Swap alert 10 short beeps
   for (int i = 8; i < 26; i=i+2)
   {
     buzzer_Event_Millis[i] = cycle_Swap - ((26-i) * (seconds/2));
-    buzzer_Event_Millis[i + 1] = buzzer_Event_Millis[i] + medBeep;
+    buzzer_Event_Millis[i + 1] = buzzer_Event_Millis[i] + shortBeep;
     // PrintBuzzerTimes(i, "Cycle Swap Half ");
   }
   // cycle Swap alert Long beep
